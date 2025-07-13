@@ -47,14 +47,14 @@ public class StudentController {
     @PostMapping("/update")
     public String updateStudent(StudentModel student) {
         repo.save(student);
-        return "redirect:/view";
+        return "redirect:pages/view";
     }
 
     @GetMapping("/delete")
     public String deleteStudent(HttpServletRequest request) {
         int id = Integer.parseInt(request.getParameter("id"));
         repo.deleteById(id);
-        return "redirect:/view";
+        return "redirect:pages/view";
     }
 
     @GetMapping("/login")
