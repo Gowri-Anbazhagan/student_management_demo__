@@ -20,20 +20,20 @@ public class StudentController {
 
     @GetMapping("/home")
     public String home() {
-        return "index";
+        return "pages/index";
     }
 
     @PostMapping("/submit")
     public String submit(StudentModel student) {
         repo.save(student);
-        return "index";
+        return "pages/index";
     }
 
     @GetMapping("/view")
     public String viewStudents(HttpServletRequest request) {
         List<StudentModel> students = repo.findAll();
         request.setAttribute("students", students);
-        return "View";
+        return "pages/View";
     }
 
     @GetMapping("/edit")
@@ -41,7 +41,7 @@ public class StudentController {
         int id = Integer.parseInt(request.getParameter("id"));
         StudentModel student = repo.findById(id).orElse(null);
         request.setAttribute("student", student);
-        return "edit";
+        return "pages/edit";
     }
 
     @PostMapping("/update")
@@ -59,7 +59,7 @@ public class StudentController {
 
     @GetMapping("/login")
     public String loginPage() {
-        return "login";
+        return "pages/login";
     }
 
     @PostMapping("/login")
@@ -69,10 +69,10 @@ public class StudentController {
 
         if ("admin".equals(username) && "admin123".equals(password)) {
             request.setAttribute("username", username);
-            return "index";
+            return "pages/index";
         } else {
             request.setAttribute("error", "Invalid username or password");
-            return "login";
+            return "pages/login";
         }
     }
 }
